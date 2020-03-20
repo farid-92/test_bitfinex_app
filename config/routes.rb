@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :services, exept: [:show]
       get 'service/service_types', to: 'services#service_types'
       get 'get_ticker/:symbol', to: 'search#get_ticker', as: 'get_ticker'
+      get 'get_tickers', to: 'search#get_tickers', as: 'get_tickers'
     end
   end
 end

@@ -2,7 +2,6 @@ module JSONHelpers
 
   def response_json
     response_json = JSON.parse(response.body)
-
     if response_json.respond_to?(:with_indifferent_access)
       response_json.with_indifferent_access
     else

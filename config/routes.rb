@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get 'service/service_types', to: 'services#service_types'
       get 'get_ticker/:symbol', to: 'search#get_ticker', as: 'get_ticker'
       get 'get_tickers', to: 'search#get_tickers', as: 'get_tickers'
+      get 'get_candles', to: 'search#get_candles', as: 'get_candles'
     end
   end
 end

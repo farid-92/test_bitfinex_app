@@ -1,6 +1,6 @@
 class Api::V1::SearchController < ApplicationController
 
-  skip_before_action :check_admin_session, only: [:get_ticker, :get_tickers]
+  skip_before_action :check_admin_session, only: [:get_ticker, :get_tickers, :get_candles]
 
   def get_ticker
     @symbol = params[:symbol]
@@ -20,9 +20,20 @@ class Api::V1::SearchController < ApplicationController
     render json: results
   end
 
+  def get_candles
+    time_frame = params[:TimeFrame]
+    type = 'candle'
+    symbol = params[:Symbol]
+    section = params[:Section]
+    queryParams = "/trade:#{time_frame}:#{symbol}/#{section}"
+    results = get_data_from_services(type, queryParams, section)
+
+    render json: results
+  end
+
   private
 
-  def get_data_from_services(type, query)
+  def get_data_from_services(type, query, section = '')
     @ticker_services = Service.where(service_type: Service.service_types[type])
     hash ={}
     @ticker_services.each do | ticker_service|

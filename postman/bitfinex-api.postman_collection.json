@@ -1,0 +1,338 @@
+{
+	"info": {
+		"_postman_id": "51ec46ba-12e1-45a8-ac4d-d1ac2f8dc2e2",
+		"name": "bitfinex-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "Get services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}{{api}}/services",
+							"host": [
+								"{{url}}{{api}}"
+							],
+							"path": [
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create service",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"url\": \"curl https://api-pub.bitfinex.com/v2/tickers/\",\n\t\"name\": \"bitfinex_4\",\n\t\"service_type\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{api}}/services",
+							"host": [
+								"{{url}}{{api}}"
+							],
+							"path": [
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update service",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"url\": \"https://api-pub.bitfinex.com/v2/tickers/\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{api}}/services/7",
+							"host": [
+								"{{url}}{{api}}"
+							],
+							"path": [
+								"services",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete service",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}{{api}}/services/3",
+							"host": [
+								"{{url}}{{api}}"
+							],
+							"path": [
+								"services",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get service types",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}{{api}}/service/service_types",
+							"host": [
+								"{{url}}{{api}}"
+							],
+							"path": [
+								"service",
+								"service_types"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "admin_authentication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b02e9a77-2c7c-4c35-a9da-111db3dab9e4",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"auth_token\", jsonData.auth_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"admin@example.com\",\n\t\"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}{{api}}/auth_admin",
+					"host": [
+						"{{url}}{{api}}"
+					],
+					"path": [
+						"auth_admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6902286-6aeb-446f-b253-d8aef3aefeb5",
+						"exec": [
+							"postman.setEnvironmentVariable(\"auth_token\", \"\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}{{api}}/logout",
+					"host": [
+						"{{url}}{{api}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ticker ",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}{{api}}/get_ticker/fUSD",
+					"host": [
+						"{{url}}{{api}}"
+					],
+					"path": [
+						"get_ticker",
+						"fUSD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tickers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"symbols\": \"tBTCUSD,tLTCUSD,fUSD\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}{{api}}/get_tickers/",
+					"host": [
+						"{{url}}{{api}}"
+					],
+					"path": [
+						"get_tickers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get candles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{auth_token}}",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}{{api}}/get_candles?TimeFrame=1m&Symbol=tBTCUSD&Section=hist",
+					"host": [
+						"{{url}}{{api}}"
+					],
+					"path": [
+						"get_candles"
+					],
+					"query": [
+						{
+							"key": "TimeFrame",
+							"value": "1m"
+						},
+						{
+							"key": "Symbol",
+							"value": "tBTCUSD"
+						},
+						{
+							"key": "Section",
+							"value": "hist"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

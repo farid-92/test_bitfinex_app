@@ -1,6 +1,6 @@
 describe 'PUT update service', type: :request do
   let!(:service) do
-    create :service, url: 'test.ru', service_type: 'ticker'
+    create :service, url: 'test.ru', name: 'test', service_type: 'ticker'
   end
 
   context 'without logged' do
@@ -27,6 +27,7 @@ describe 'PUT update service', type: :request do
     let(:params) do
       {
           url: '',
+          name: 'test',
           service_type: 'candle'
       }
     end
@@ -58,6 +59,7 @@ describe 'PUT update service', type: :request do
     let(:params) do
       {
           url: 'new-test.ru',
+          name: 'new-test',
           service_type: 'candle',
       }
     end
@@ -69,6 +71,7 @@ describe 'PUT update service', type: :request do
     it 'should update service' do
       service.reload
       expect(service.url).to eq('new-test.ru')
+      expect(service.name).to eq('new-test')
       expect(service.service_type).to eq('candle')
     end
   end

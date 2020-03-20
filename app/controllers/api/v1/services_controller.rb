@@ -41,7 +41,7 @@ class Api::V1::ServicesController < ApplicationController
   end
 
   def services_params
-    params.permit  :id, :url, :service_type
+    params.permit  :id, :url, :service_type, :name
   end
 
 end

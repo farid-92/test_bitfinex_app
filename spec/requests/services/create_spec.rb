@@ -18,6 +18,7 @@ describe 'POST create service', type: :request do
 
     it 'should response errors' do
       expect(response_json[:errors]).to match_array([
+                                                        {source: 'name', message: 'Name can\'t be blank'},
                                                         {source: 'url', message: 'Url can\'t be blank'}
                                                     ])
     end
@@ -28,6 +29,7 @@ describe 'POST create service', type: :request do
     let(:params) do
       {
           url: 'test.ru',
+          name: 'test',
           service_type: 'ticker'
       }
     end
@@ -38,6 +40,7 @@ describe 'POST create service', type: :request do
       id = Service.last.id
       expect(response_json[:id]).to eq(id)
       expect(response_json[:url]).to eq('test.ru')
+      expect(response_json[:name]).to eq('test')
       expect(response_json[:service_type]).to eq('ticker')
     end
   end

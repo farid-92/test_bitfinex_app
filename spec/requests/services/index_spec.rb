@@ -1,6 +1,6 @@
 describe 'GET index services', type: :request do
-  let!(:service1) {create :service, url: 'test.ru', service_type: 'ticker'}
-  let!(:service2) {create :service, url: 'test-2.ru', service_type: 'candle'}
+  let!(:service1) {create :service, url: 'test.ru', name: 'test', service_type: 'ticker'}
+  let!(:service2) {create :service, url: 'test-2.ru', name: 'test2', service_type: 'candle'}
 
   before {get(api_v1_services_path, headers, nil)}
 

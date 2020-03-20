@@ -1,6 +1,6 @@
 describe 'DELETE destroy service', type: :request do
 
-  let!(:service) {create :service, url: 'test.ru', service_type: 'ticker'}
+  let!(:service) {create :service, url: 'test.ru', name: 'test', service_type: 'ticker'}
 
   context 'without logged' do
     let(:headers) { nil }

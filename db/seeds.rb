@@ -7,3 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create(email: "admin@example.com", password:'password')
+
+Service.create(url: 'https://api-pub.bitfinex.com/v2/candles/', name: 'bitfinex_candles', service_type: 'candle')
+Service.create(url: 'https://api-pub.bitfinex.com/v2/ticker/', name: 'bitfinex_ticker', service_type: 'ticker')
+Service.create(url: 'https://api-pub.bitfinex.com/v2/tickers/', name: 'bitfinex_tickers', service_type: 'tickers')

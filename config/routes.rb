@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post 'auth_admin' => 'authentication#authenticate_admin'
       get 'logout' => 'authentication#admin_logout'
+      resources :services
     end
   end
 end

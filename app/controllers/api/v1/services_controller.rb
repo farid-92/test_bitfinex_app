@@ -23,6 +23,10 @@ class Api::V1::ServicesController < ApplicationController
 
   end
 
+  def service_types
+    render json: Service.service_types
+  end
+
   def destroy
     @service.destroy
     render json: { message: 'Service deleted'}, status: :ok

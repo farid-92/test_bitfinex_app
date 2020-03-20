@@ -16,7 +16,10 @@ class Api::V1::ServicesController < ApplicationController
 
   end
 
-  def edit
+  def update
+    @result = Service::Update.call(params: services_params, service: @service)
+    return render json: ErrorsSerializer.serialize(@result.errors), status: @result.status  if @result.errors.present?
+    render json: @result.service, serializer: ServiceSerializer, status: @result.status
 
   end
 
@@ -33,7 +36,7 @@ class Api::V1::ServicesController < ApplicationController
   end
 
   def services_params
-    params.permit  :url, :service_type
+    params.permit  :id, :url, :service_type
   end
 
 end
